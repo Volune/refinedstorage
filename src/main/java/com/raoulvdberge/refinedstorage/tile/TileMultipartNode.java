@@ -18,6 +18,8 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.capabilities.Capability;
 
+import javax.annotation.Nullable;
+
 public abstract class TileMultipartNode extends TileNode implements IMicroblockContainerTile, ISlottedCapabilityProvider {
     private MicroblockContainer container;
 
@@ -101,8 +103,10 @@ public abstract class TileMultipartNode extends TileNode implements IMicroblockC
     }
 
     @Override
-    public boolean canConduct(EnumFacing direction) {
-        return !hasBlockingMicroblock(worldObj, pos, direction) && !hasBlockingMicroblock(worldObj, pos.offset(direction), direction.getOpposite());
+    public boolean canConduct(@Nullable EnumFacing direction) {
+        return direction != null &&
+                !hasBlockingMicroblock(worldObj, pos, direction) &&
+                !hasBlockingMicroblock(worldObj, pos.offset(direction), direction.getOpposite());
     }
 
     @Override
