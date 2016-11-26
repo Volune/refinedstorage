@@ -592,7 +592,7 @@ public class TileController extends TileBase implements INetworkMaster, IEnergyR
     public void sendReaderWriterChannelUpdate() {
         worldObj.getMinecraftServer().getPlayerList().getPlayerList().stream()
             .filter(player -> player.openContainer instanceof ContainerReaderWriter &&
-                ((ContainerReaderWriter) player.openContainer).getReaderWriter().isConnected() &&
+                ((ContainerReaderWriter) player.openContainer).getReaderWriter().getNetwork() != null &&
                 pos.equals(((ContainerReaderWriter) player.openContainer).getReaderWriter().getNetwork().getPosition()))
             .forEach(this::sendReaderWriterChannelUpdate);
     }

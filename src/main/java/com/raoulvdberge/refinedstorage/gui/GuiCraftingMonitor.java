@@ -58,7 +58,7 @@ public class GuiCraftingMonitor extends GuiBase {
     }
 
     public List<ICraftingMonitorElement> getElements() {
-        return craftingMonitor.isConnected() ? ELEMENTS : Collections.emptyList();
+        return craftingMonitor.isActive() ? ELEMENTS : Collections.emptyList();
     }
 
     @Override
